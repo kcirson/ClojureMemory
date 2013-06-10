@@ -1,0 +1,65 @@
+div#wrapper p {
+	font-size:15px;
+	font-family:Arial, Helvetica, sans-serif;
+	margin-bottom:20px;
+	text-align: center;
+}
+
+div#wrapper input.notclicked
+{
+	width:70px;
+	height:70px;
+	border:1px solid #dedede;
+	background:#C5CFD4;
+	margin:1px;
+	color:#666;
+}
+
+div#wrapper input.clicked
+{
+	width:70px;
+	height:70px;
+	border:1px solid #dedede;
+	background:#D1DEE3;
+	margin:1px;
+	color:#666;
+	cursor:default;
+}
+
+div#wrapper input:hover
+{
+	cursor:pointer;
+}
+
+div#wrapper
+{
+	color:#666;
+	width: 20%;
+	margin: 200px auto auto;
+}
+
+div#wrapper a
+{
+	text-decoration:none;
+	font-family: Arial, helvetica, sans-serif;
+	color:#666;
+	text-indent:57px;
+	float:left;
+	margin-top:10px;
+	font-size:14px;
+}
+
+div#wrapper a:hover
+{
+	text-decoration:underline;
+}
+
+p#again a{
+	text-align: center;
+}
+
+div#cheatsheet {
+	position:absolute;
+	top: 0;
+	right:0;
+}
