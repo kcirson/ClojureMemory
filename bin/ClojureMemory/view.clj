@@ -31,7 +31,7 @@
             :style (if
                      (and
                        (not= (model/get-board-cell rownum colnum) \-)
-                              (= (model/get-board-value (model/get-scoreboard) rownum colnum)  \=) 
+                              (= (model/get-board-cell (model/get-scoreboard) rownum colnum)  \=) 
                      )
                      (str "color: #fff; border: 0px solid white; background: #fff;") 
                      (str "display: inline-block;") 
