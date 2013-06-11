@@ -10,7 +10,8 @@
   (html5
    [:head
     [:title "Welcome to Memory"]
-    (include-css "/css/memory.css")]
+    (include-css "/css/memory.css")
+    (include-js "/js/memory.js")]
    [:body [:div#wrapper content]]))
 
 (defn cell-html [rownum colnum cell with-submit?] 

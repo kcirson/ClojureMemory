@@ -3,40 +3,32 @@ window.addEventListener("click", function(event) {
 		var buttonId = event.target.id;
 		var row = buttonId.substring(1, 2);
 		var col = buttonId.substring(2, 3);
-		
-		row = parseInt(row);
+
+		row = parseInt(row + 1);
 		col = parseInt(col);
-		
-		
+
 		var hidden = document.getElementById("hiddenvals");
+
 		var firstdemstring = hidden.value.replace("[", "");
-		firstdemstring = firstdemstring.replace(/\]/g,' ')
-		firstdemstring = firstdemstring.replace(/\\/g,' ')
+		firstdemstring = firstdemstring.replace(/\]/g,' ');
+		firstdemstring = firstdemstring.replace(/\\/g,' ');
+		firstdemstring = firstdemstring.replace(/\s+/g, '');
+
 		var hulparray = new Array();
+		var letterArray = new Array();
 		hulparray = firstdemstring.split("[");
-		//var chars = firstdemstring.split("\\");
-		var chararray = new Array();
-		var nieuwehulparray = new Array();
-		var array = new Array();
+
 		for (var first in hulparray) {
 			if(hulparray[first] !== "") {
-				//alert(hulparray[first]);
-				nieuwehulparray[first] = hulparray[first].split(" ");
-				for(var second in nieuwehulparray) {
-					if(nieuwehulparray[second] !== "") {
-						array[first] = nieuwehulparray[second];
-					}
-					
-					
-				}
+				letterArray[first] = hulparray[first].split("");
 			}
 		}
-		//showNumber(buttonId, array[row][col]);
+		showNumber(buttonId, letterArray[row][col]);
 	}
-	
+
 	function showNumber(buttonId, val) {
 		var ele = document.getElementById(buttonId);
 		ele.value = val;
-		setTimeout(1000000000);
+		setTimeout("", 1500);
 	}
 });
