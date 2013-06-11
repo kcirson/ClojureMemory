@@ -7,9 +7,13 @@ pom.xml.asc
 *.jar
 *.class
 .settings
-.bin
-.doc
+bin
+doc
+target
 .lein-deps-sum
 .lein-failures
 .lein-plugins
 .lein-repl-history
+.classpath
+.gitattributes
+.project
