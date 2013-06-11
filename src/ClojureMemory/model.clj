@@ -46,13 +46,6 @@
   ([board row col]
     (get-in board [row col])))
 
-(defn get-board-value 
-   ([row col]
-    (get-board-value (get-memoryboard) row col))
-  ([board row col]
-    (get-in board [row col]))
-  )
-
 (defn set-board-score [row col]
   (session/put! :score-board (assoc-in (session/get :score-board) [row col] \=))
 )
@@ -114,7 +107,7 @@
 
 (defn new-state [row col old-state]
   (if (not (full-board? (:board old-state)))
-    {:board (assoc-in (:board old-state) [row col] (get-board-value row col))
+    {:board (assoc-in (:board old-state) [row col] (get-board-cell (get-memoryboard) row col))
      :turn (session/get :turn)
      :player (:player old-state)
      }
@@ -141,23 +134,25 @@
     (session/swap! (fn [session-map] (assoc session-map :game-state (new-state row col (:game-state session-map)))))
     (println (session/get :game-state) "first turn")
     )
-  ([row col second] 
-    (if(= (checkIfEqual? (get-player) (get-board-value row col) (get-board-value (session/get :temprow) (session/get :tempcol))) "true")
-      (do
-        (session/put! :turn 1)
-        (session/swap! (fn [session-map] (assoc session-map :game-state (new-state row col (:game-state session-map)))))
-        (set-board-score row col)
-        (set-board-score (session/get :temprow)(session/get :tempcol))
-        (println (session/get :game-state) "game state true")
-      )
-      (do
-        (session/put! :turn 1)
-        ;;(session/swap! (fn [session-map] (assoc session-map :game-state (new-state row col (:game-state session-map)))))
-         (hideValues (session/get :temprow)(session/get :tempcol) false)
-        (hideValues row col true)
-        (println (session/get :game-state) "game-state false")
-      )
-    )
+  ([row col second]
+   (let [memboard (get-memoryboard)]
+	(if(= (checkIfEqual? (get-player) (get-board-cell memboard row col) (get-board-cell memboard (session/get :temprow) (session/get :tempcol))) "true")
+	  (do
+		(session/put! :turn 1)
+		(session/swap! (fn [session-map] (assoc session-map :game-state (new-state row col (:game-state session-map)))))
+		(set-board-score row col)
+		(set-board-score (session/get :temprow)(session/get :tempcol))
+		(println (session/get :game-state) "game state true")
+	  )
+	  (do
+		(session/put! :turn 1)
+		;;(session/swap! (fn [session-map] (assoc session-map :game-state (new-state row col (:game-state session-map)))))
+		 (hideValues (session/get :temprow)(session/get :tempcol) false)
+		(hideValues row col true)
+		(println (session/get :game-state) "game-state false")
+	  )
+	)
+	)
   )
 )
 
